@@ -1,0 +1,23 @@
+# SPDX-License-Identifier: LicenseRef-Proprietary
+[package]
+name = "example-enterprise-01-tls-stage-rust"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license-file.workspace = true
+rust-version.workspace = true
+publish = false
+description = "Example — the enterprise ring's TLS stage reached through its hub: a TLS 1.3 handshake on loopback with a certificate the example makes, one frame sent and received, and what the deferred DTLS mode reports."
+
+[[bin]]
+name = "tls-stage"
+path = "src/main.rs"
+
+[dependencies]
+enterprise-hub = { path = "../../rings/enterprise_ring/enterprise-hub" }
+pulse-canon = { path = "../../../pulse-mesh/pulse/pulse-canon" }
+# The loopback certificate the example presents and trusts.
+rcgen.workspace = true
+
+[lints]
+workspace = true

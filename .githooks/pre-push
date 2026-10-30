@@ -1,0 +1,6 @@
+#!/bin/sh
+# SPDX-License-Identifier: LicenseRef-Proprietary
+# Copyright (c) 2026 Sovereignty Foundation
+# Pre-push hook: nothing leaves this clone unless the license gate passes.
+# Enable once per clone: git config core.hooksPath .githooks
+exec "$(git rev-parse --show-toplevel)/scripts/license-gate.sh"

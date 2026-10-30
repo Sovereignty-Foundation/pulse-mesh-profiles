@@ -1,0 +1,18 @@
+[package]
+name = "robotics-hub"
+description = "Pulse Mesh — robotics_ring hub layer: the ring's import point; re-exports core, functions and stages and emits the ring manifest."
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license-file.workspace = true
+rust-version.workspace = true
+publish.workspace = true
+
+[dependencies]
+robotics-core = { path = "../robotics-core" }
+robotics-functions = { path = "../robotics-functions" }
+robotics-stages = { path = "../robotics-stages" }
+mesh-stage-registry = { path = "../../../../pulse-mesh/core/mesh-stage-registry" }
+
+[lints]
+workspace = true

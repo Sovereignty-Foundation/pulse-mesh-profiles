@@ -1,0 +1,8 @@
+# Written by arc/license-injector. Do not edit by hand.
+notice = "sfrl-1.3-full"
+notice_file = "LICENSE"
+notice_sha256 = "2d9d938198336c557dd0c6a913b01aab59add89ff04b4f88049ae4eed2929728"
+designation = "sfrl-1.3"
+repository = "Sovereignty-Foundation/pulse-mesh-profiles"
+licensing_page = "https://sovfound.org/licenses/"
+tool = "sovlicense 1"

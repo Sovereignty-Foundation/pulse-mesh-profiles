@@ -1,0 +1,16 @@
+[package]
+name = "hft-core"
+description = "Pulse Mesh — hft_ring core layer: cache-line prefetch hints and the version-2 slot constants; no state, no I/O."
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license-file.workspace = true
+rust-version.workspace = true
+publish.workspace = true
+
+[dependencies]
+pulse-canon = { path = "../../../../pulse-mesh/pulse/pulse-canon" }
+core-ring = { path = "../../../../pulse-mesh/core/core-ring" }
+
+[lints]
+workspace = true

@@ -1,0 +1,26 @@
+[package]
+name = "hft-hub"
+description = "Pulse Mesh — hft_ring hub layer: the ring's import point; re-exports core, functions and stages and emits the ring manifest."
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license-file.workspace = true
+rust-version.workspace = true
+publish.workspace = true
+
+[dependencies]
+hft-core = { path = "../hft-core" }
+hft-functions = { path = "../hft-functions" }
+hft-stages = { path = "../hft-stages" }
+mesh-stage-registry = { path = "../../../../pulse-mesh/core/mesh-stage-registry" }
+
+[features]
+# The hardware wait strategies of `functions::wait`, passed through so that
+# downstream code turns them on here rather than depending on hft-functions.
+# `BusySpin` and `Park` are always built and need no feature.
+umwait = ["hft-functions/umwait"]
+mwaitx = ["hft-functions/mwaitx"]
+wfe = ["hft-functions/wfe"]
+
+[lints]
+workspace = true

@@ -1,0 +1,15 @@
+# Proprietary technology — research and evaluation permission
+
+Copyright © 2026 Sovereignty Foundation Inc. All rights reserved.
+
+The technology in this repository is proprietary. Logos IP Licensing LLC licenses Foundation-owned material under authority from the Foundation. Third-party material remains under its identified terms.
+
+The Foundation maintains the current working license and program at **https://sovfound.org/licenses/**. It may evolve with feedback from working groups and contributors. Releases governed by this notice use the **Sovereignty Foundation Research License, Version 1.3**; its fixed terms are at **https://sovfound.org/licenses/research/1.3/license.txt**. Later revisions do not silently change the terms of this release. The full license controls this summary.
+
+Research and internal commercial evaluation are permitted within that License's limits. Commercial test pilots involving customers or business partners require registration confirmation. **Live operational pilots, production use, sale and other commercialization require an express written Supplementary Grant from Logos IP Licensing LLC before they begin.** Registration alone is not that grant.
+
+Private modifications are permitted within the License. Public forks outside the hosting service and any compiled binaries, container images or complete redistributable builds are prohibited unless separately expressly authorized. While this repository is public on a hosting service, you may view it there, fork it, and push modifications for Permitted Use to that fork solely within that service (Section 2.2). Any fork, modified or unmodified, stays under the License and must preserve intact all received license notices, attribution files, provenance manifests, registry references, cryptographic or version identifiers and lineage metadata. A fork carrying modifications must conspicuously identify the canonical Foundation source version or commit from which it diverged, record its material changes, label any modifier-controlled root or registry as non-Foundation, distinguish any modified branding from the Foundation's release, and clearly distinguish itself from a canonical Foundation release (Sections 3, 5 and 9). Limited research reproduction materials may also be shared under Sections 2.2 and 2.3.
+
+No ownership is transferred. The License provides only its narrow patent covenant for Permitted Use, covering only infringement the unmodified Software would cause, not general patent clearance or permission to use Foundation branding as your own. Preserve applicable notices and provenance. Participation, forking or contribution does not itself grant commercialization rights or make the technology open source.
+
+Registration, operational-pilot grants and early commercial licensing: **org@sovfound.org**.

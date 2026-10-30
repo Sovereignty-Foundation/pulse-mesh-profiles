@@ -1,0 +1,420 @@
+/* Pulse Mesh book theme.
+   The tokens are the website's: four
+   architectural colors that name four layers (cyan = Pulse, violet = Envelope,
+   emerald = substrate, amber = transport), two semantic colors (rose = error,
+   slate = inactive), paper and warm-dark chrome, Vollkorn and JetBrains Mono.
+   The label idiom (numbered, letter-spaced mono uppercase over a hairline) is
+   the Foundation's, as on sovfound.org. mdBook's "light" theme is the paper
+   chrome and "navy" is re-tokenised as the dark chrome, the default as on the
+   website; the other built-in themes are hidden. mdBook sets 1rem to 10px, so
+   a rem here is smaller than the website's; no text is set below 12px, and
+   text on paper uses the -ink shades, which pass 4.5:1. */
+
+:root {
+  --pm-cyan: #06b6d4;    --pm-cyan-deep: #0891b2;    --pm-cyan-soft: #cffafe;    --pm-cyan-ink: #0e7490;
+  --pm-violet: #8b5cf6;  --pm-violet-deep: #7c3aed;  --pm-violet-soft: #ede9fe;
+  --pm-emerald: #10b981; --pm-emerald-deep: #047857; --pm-emerald-soft: #d1fae5;
+  --pm-amber: #f59e0b;   --pm-amber-deep: #d97706;   --pm-amber-soft: #fef3c7;   --pm-amber-ink: #b45309;
+  --pm-rose: #f43f5e;    --pm-rose-deep: #e11d48;    --pm-rose-soft: #ffe4e6;
+  --pm-slate: #64748b;   --pm-slate-deep: #475569;   --pm-slate-soft: #f1f5f9;
+  --pm-font-serif: "Vollkorn", Georgia, "Times New Roman", serif;
+  --pm-font-mono: "JetBrains Mono", "Menlo", "SFMono-Regular", Consolas, monospace;
+  --pm-track-wide: 0.06em;
+  --pm-track-extra: 0.10em;
+  --pm-track-mega: 0.15em;
+  --mono-font: var(--pm-font-mono);
+  --content-max-width: 760px;   /* the website's document measure */
+  --menu-bar-height: 76px;      /* the website's header: a 40px mark with 18px above and below */
+}
+
+/* ---- Paper chrome (mdBook "light") ---------------------------------------- */
+html.light {
+  --pm-bg: #fefefe; --pm-surface: #ffffff; --pm-surface-2: #f8f8f8;
+  --pm-text: #1a1a1a; --pm-text-body: #333333; --pm-text-mute: #555555;
+  --pm-text-aside: #666666; --pm-text-soft: #6e6e6e; --pm-text-faint: #cccccc;
+  --pm-rule: #eeeeee; --pm-rule-strong: #dddddd;
+  --pm-accent: var(--pm-amber-ink); --pm-accent-ink: #ffffff; --pm-link: var(--pm-cyan-ink);
+
+  --bg: var(--pm-bg); --fg: var(--pm-text-body);
+  --sidebar-bg: var(--pm-surface-2); --sidebar-fg: var(--pm-text-mute);
+  --sidebar-non-existant: var(--pm-text-faint); --sidebar-active: var(--pm-accent);
+  --sidebar-spacer: var(--pm-rule);
+  --scrollbar: var(--pm-rule-strong);
+  --icons: var(--pm-text-soft); --icons-hover: var(--pm-text);
+  --links: var(--pm-link);
+  --inline-code-color: var(--pm-link);
+  --theme-popup-bg: var(--pm-surface); --theme-popup-border: var(--pm-rule-strong);
+  --theme-hover: var(--pm-surface-2);
+  --quote-bg: var(--pm-surface-2); --quote-border: var(--pm-rule-strong);
+  --warning-border: var(--pm-amber);
+  --table-border-color: var(--pm-rule); --table-header-bg: var(--pm-surface-2);
+  --table-alternate-bg: var(--pm-surface);
+  --searchbar-border-color: var(--pm-rule-strong); --searchbar-bg: var(--pm-surface);
+  --searchbar-fg: var(--pm-text); --searchbar-shadow-color: rgba(0, 0, 0, 0.04);
+  --searchresults-header-fg: var(--pm-text-mute); --searchresults-border-color: var(--pm-rule);
+  --searchresults-li-bg: var(--pm-surface-2); --search-mark-bg: var(--pm-amber-soft);
+  --color-scheme: light;
+  --footnote-highlight: var(--pm-amber-soft);
+  --blockquote-note-color: var(--pm-cyan-ink); --blockquote-tip-color: var(--pm-emerald-deep);
+  --blockquote-important-color: var(--pm-violet-deep); --blockquote-warning-color: var(--pm-amber-ink);
+  --blockquote-caution-color: var(--pm-rose-deep);
+  --sidebar-header-border-color: var(--pm-rule-strong);
+}
+
+/* ---- Dark chrome (mdBook "navy", re-tokenised) ----------------------------- */
+html.navy {
+  --pm-bg: #131210; --pm-surface: #1a1816; --pm-surface-2: #201d1a;
+  --pm-text: #ededed; --pm-text-body: #d0cfcd; --pm-text-mute: #9a9896;
+  --pm-text-aside: #8a8886; --pm-text-soft: #8a8886; --pm-text-faint: #555351;
+  --pm-rule: rgba(255, 255, 250, 0.10); --pm-rule-strong: rgba(255, 255, 250, 0.20);
+  --pm-cyan-soft: rgba(6, 182, 212, 0.18); --pm-violet-soft: rgba(139, 92, 246, 0.18);
+  --pm-emerald-soft: rgba(16, 185, 129, 0.18); --pm-amber-soft: rgba(245, 158, 11, 0.18);
+  --pm-rose-soft: rgba(244, 63, 94, 0.18); --pm-slate-soft: rgba(100, 116, 139, 0.18);
+  --pm-slate: #94a3b8; --pm-slate-deep: #cbd5e1;
+  --pm-accent: var(--pm-amber); --pm-accent-ink: #131210; --pm-link: var(--pm-cyan);
+
+  --bg: var(--pm-bg); --fg: var(--pm-text-body);
+  --sidebar-bg: var(--pm-surface); --sidebar-fg: var(--pm-text-mute);
+  --sidebar-non-existant: var(--pm-text-faint); --sidebar-active: var(--pm-accent);
+  --sidebar-spacer: var(--pm-rule);
+  --scrollbar: var(--pm-rule-strong);
+  --icons: var(--pm-text-soft); --icons-hover: var(--pm-text);
+  --links: var(--pm-link);
+  --inline-code-color: var(--pm-cyan);
+  --theme-popup-bg: var(--pm-surface); --theme-popup-border: var(--pm-rule-strong);
+  --theme-hover: var(--pm-surface-2);
+  --quote-bg: var(--pm-surface-2); --quote-border: var(--pm-rule-strong);
+  --warning-border: var(--pm-amber);
+  --table-border-color: var(--pm-rule); --table-header-bg: var(--pm-surface-2);
+  --table-alternate-bg: var(--pm-surface);
+  --searchbar-border-color: var(--pm-rule-strong); --searchbar-bg: var(--pm-surface-2);
+  --searchbar-fg: var(--pm-text); --searchbar-shadow-color: rgba(0, 0, 0, 0.4);
+  --searchresults-header-fg: var(--pm-text-mute); --searchresults-border-color: var(--pm-rule);
+  --searchresults-li-bg: var(--pm-surface-2); --search-mark-bg: var(--pm-amber-soft);
+  --color-scheme: dark;
+  --footnote-highlight: var(--pm-amber-soft);
+  --blockquote-note-color: var(--pm-cyan); --blockquote-tip-color: var(--pm-emerald);
+  --blockquote-important-color: var(--pm-violet); --blockquote-warning-color: var(--pm-amber);
+  --blockquote-caution-color: var(--pm-rose);
+  --sidebar-header-border-color: var(--pm-rule-strong);
+  --copy-button-filter: invert(60%);
+  --copy-button-filter-hover: invert(90%);
+}
+
+/* ---- Type ------------------------------------------------------------------ */
+body {
+  font-family: var(--pm-font-serif);
+  font-feature-settings: "kern" 1, "liga" 1;
+  /* Vollkorn's default figures are old-style, where 1 reads as I and 0 as o. */
+  font-variant-numeric: lining-nums;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+.content main {
+  font-family: var(--pm-font-serif);
+  font-size: 1.8rem;          /* 18 px, the website's baseline */
+  line-height: 1.53;
+  color: var(--pm-text-body);
+}
+.content h1, .content h2, .content h3, .content h4, .content h5 {
+  font-family: var(--pm-font-serif);
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--pm-text);
+}
+.content h1 { font-size: 2.6em; letter-spacing: -0.02em; margin: 0.9em 0 0.5em; }
+.content h2 { font-size: 1.5em; margin: 2.4em 0 0.9em; position: relative; }
+.content h2::after {
+  content: ""; display: block; width: 100px; height: 1px;
+  background: var(--pm-rule-strong); margin-top: 0.5em;
+}
+.content h3 { font-size: 1.1em; font-style: italic; color: var(--pm-text-mute); margin: 2em 0 0.7em; }
+.content h4 { font-family: var(--pm-font-mono); font-size: 0.72em; letter-spacing: var(--pm-track-extra); text-transform: uppercase; color: var(--pm-text-mute); margin: 2em 0 0.7em; }
+.content p { margin: 0 0 0.9em; }
+.content a:not(.pm-cta) { color: var(--pm-link); text-decoration: underline; text-decoration-color: color-mix(in srgb, var(--pm-link) 35%, transparent); text-underline-offset: 0.15em; }
+.content a:not(.pm-cta):hover { text-decoration-color: var(--pm-link); }
+.content strong { font-weight: 600; color: var(--pm-text); }
+.content code { font-family: var(--pm-font-mono); font-size: 0.86em; }
+.content pre { background: var(--pm-surface-2); border: 1px solid var(--pm-rule); border-radius: 4px; }
+.content pre > code { background: transparent; font-size: 0.82em; line-height: 1.55; }
+/* Code in running text is framed; when it breaks across lines, each piece keeps its frame. */
+.content :not(pre) > code { background: var(--pm-surface-2); border: 1px solid var(--pm-rule); border-radius: 3px; padding: 0.05em 0.35em; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+.content table { font-size: 0.9em; border-collapse: collapse; font-variant-numeric: lining-nums tabular-nums; }
+.content table th { font-family: var(--pm-font-mono); font-size: 0.75em; font-weight: 500; letter-spacing: var(--pm-track-wide); text-transform: uppercase; color: var(--pm-text-mute); background: var(--table-header-bg); }
+.content table td, .content table th { border: 1px solid var(--table-border-color); padding: 0.45em 0.7em; vertical-align: top; }
+/* In a table the cell is the frame: code sits bare, and a name in the first column keeps to one line. */
+.content table :not(pre) > code { background: none; border: 0; padding: 0; }
+.content table td:first-child > code { white-space: nowrap; }
+.content blockquote { border-left: 3px solid var(--pm-amber); background: var(--quote-bg); color: var(--pm-text-aside); font-style: italic; }
+.content blockquote code { font-style: normal; }
+.content hr { border: 0; height: 1px; background: var(--pm-rule-strong); margin: 2.5em 0; }
+.content img { max-width: 100%; }
+
+/* Every page opens with its kind and its reader: the kind as a mono label, the reader in the voice of the text. */
+.content .pm-kind {
+  font-family: var(--pm-font-serif);
+  font-size: 0.86em;
+  font-style: italic;
+  color: var(--pm-text-mute);
+  border-bottom: 1px solid var(--pm-rule);
+  padding-bottom: 0.6em;
+  margin: 0 0 1.8em;
+}
+.content .pm-kind b {
+  font-family: var(--pm-font-mono);
+  font-size: 0.8em;
+  font-style: normal;
+  font-weight: 500;
+  letter-spacing: var(--pm-track-extra);
+  text-transform: uppercase;
+  color: var(--pm-accent);
+}
+
+/* Figure with caption, mirroring the website's .pm-viz caption. */
+.content figure.pm-figure { margin: 2em 0; }
+.content figure.pm-figure img { display: block; margin: 0 auto; }
+.content figure.pm-figure figcaption { font-family: var(--pm-font-mono); font-size: 0.7em; letter-spacing: var(--pm-track-wide); text-transform: uppercase; color: var(--pm-text-soft); text-align: center; margin-top: 0.8em; }
+
+/* Figures come in a paper and a dark rendering; the chrome picks one. */
+html.light .pm-figure img.pm-fig-dark, html.navy .pm-figure img.pm-fig-light { display: none; }
+
+/* ---- The website's mark: two nodes and the beam between them, as in its header ---- */
+.pm-mark { display: block; flex-shrink: 0; width: 40px; height: 40px; color: var(--pm-text); }
+.pm-mark .pm-mark-beam { stroke: var(--pm-accent); stroke-dasharray: 2 3; }
+@media (prefers-reduced-motion: no-preference) {
+  .pm-mark .pm-mark-beam { animation: pm-beam-flow 1.4s linear infinite; }
+  .pm-mark .pm-mark-node-sm { animation: pm-node-breathe 3s ease-in-out infinite; }
+  .pm-mark .pm-mark-node-lg { animation: pm-node-breathe 4s ease-in-out infinite -1s; }
+}
+@keyframes pm-beam-flow { to { stroke-dashoffset: -10; } }
+@keyframes pm-node-breathe { 0%, 100% { opacity: 1; } 50% { opacity: 0.65; } }
+.pm-brand-text { display: flex; flex-direction: column; gap: 0.3rem; line-height: 1.15; min-width: 0; }
+.pm-wordmark { font-family: var(--pm-font-serif); font-size: 1.55rem; font-weight: 500; letter-spacing: 0.02em; color: var(--pm-text); white-space: nowrap; }
+.pm-brand-sub { font-family: var(--pm-font-mono); font-size: 1.2rem; letter-spacing: var(--pm-track-wide); text-transform: uppercase; color: var(--pm-text-soft); white-space: nowrap; }
+
+/* The Foundation's monogram, for the introduction and the part openers. */
+.pm-logo { display: block; width: 44px; height: 44px; margin: 0 auto 1rem; }
+html.light .pm-logo-dark, html.navy .pm-logo-light { display: none; }
+.pm-tm { font-family: var(--pm-font-serif); font-size: 0.5em; font-weight: 400; letter-spacing: 0; vertical-align: super; margin-left: 0.15em; }
+
+/* ---- Sidebar ---------------------------------------------------------------- */
+.sidebar { font-family: var(--pm-font-serif); counter-reset: pm-part; }
+.sidebar .sidebar-scrollbox { padding-top: 0.5rem; }
+.chapter li a, .chapter li > div { font-size: 1.45rem; }
+.chapter li.chapter-item { line-height: 1.5; }
+.chapter .part-title {
+  font-family: var(--pm-font-mono);
+  font-size: 1.2rem;
+  font-weight: 500;
+  letter-spacing: var(--pm-track-mega);
+  text-transform: uppercase;
+  color: var(--pm-text-soft);
+  margin: 2em 0 0.6em;
+  padding-bottom: 0.5em;
+  border-bottom: 1px solid var(--pm-rule);
+  counter-increment: pm-part;
+}
+.chapter .part-title::before { content: "0" counter(pm-part) "  "; color: var(--pm-accent); }
+/* A part's first entry is its opener: set as the part's lede rather than as one more page. */
+.chapter li.part-title + li.chapter-item > .chapter-link-wrapper > a { font-style: italic; }
+
+/* The sidebar's head is the left half of the website's header: the mark and the name, as tall as the menu bar beside it. */
+.pm-sidebar-brand {
+  display: flex; align-items: center; gap: 1.2rem;
+  box-sizing: border-box; height: calc(var(--menu-bar-height) + 1px);   /* the menu bar's height leaves out its bottom rule; this box counts it */
+  padding: 0 1.6rem; margin: 0;
+  border-bottom: 1px solid var(--pm-rule);
+  background: var(--pm-bg);
+  text-decoration: none;
+}
+.pm-sidebar-brand:hover .pm-wordmark { color: var(--pm-link); }
+
+/* The three books, one row under the brand; the one being read is marked. */
+.pm-books { display: flex; margin: 0; padding: 0; list-style: none; border-bottom: 1px solid var(--pm-rule); }
+.pm-books li { flex: 1; margin: 0; }
+.pm-books a { display: block; padding: 1rem 0.4rem 0.8rem; text-align: center; font-family: var(--pm-font-mono); font-size: 1.2rem; letter-spacing: var(--pm-track-wide); text-transform: uppercase; color: var(--pm-text-mute); text-decoration: none; border-bottom: 2px solid transparent; }
+.pm-books a:hover { color: var(--pm-text); }
+.pm-books a[aria-current] { color: var(--pm-text); border-bottom-color: var(--pm-accent); }
+
+/* The website's pages, in the sidebar when the menu bar has no room for them. */
+.pm-site-links { display: none; margin: 0; padding: 0.8rem 1.6rem 1rem; list-style: none; border-bottom: 1px solid var(--pm-rule); columns: 2; column-gap: 1.6rem; }
+.pm-site-links li { margin: 0; break-inside: avoid; }
+.pm-site-links a { display: block; padding: 0.5rem 0; font-family: var(--pm-font-mono); font-size: 1.2rem; letter-spacing: var(--pm-track-wide); text-transform: uppercase; color: var(--pm-text-mute); text-decoration: none; }
+.pm-site-links a:hover, .pm-site-links a[aria-current] { color: var(--pm-text); }
+@media only screen and (max-width: 1379px) { .pm-site-links { display: block; } }
+
+/* ---- Menu bar: the right half of the website's header -------------------------- */
+.menu-bar { container: pm-menu / inline-size; border-bottom: 1px solid var(--pm-rule); background: var(--pm-bg); }
+.menu-bar .left-buttons { margin: 0 0.4rem 0 0.8rem; }
+#mdbook-theme-toggle, #mdbook-theme-list, .menu-bar .right-buttons > a:not(.pm-nav-cta) { display: none !important; }
+.menu-bar .right-buttons { margin: 0 2.4rem 0 auto; display: flex; align-items: center; gap: 2.8rem; }
+.menu-title { flex: 0 1 auto; margin: 0 1.6rem 0 0.6rem; text-align: left; font-size: 1.55rem; line-height: var(--menu-bar-height); overflow: visible; }
+.pm-nav-brand { display: inline-flex; align-items: center; gap: 1.2rem; vertical-align: middle; text-decoration: none; }
+.pm-nav-brand:hover .pm-wordmark { color: var(--pm-link); }
+/* One brand in view: the sidebar's while it is open, the menu bar's while it is not. */
+html.sidebar-visible .pm-nav-brand { display: none; }
+.pm-nav-links { display: flex; align-items: center; gap: 2.8rem; margin: 0; padding: 0; list-style: none; white-space: nowrap; }
+.pm-nav-links li { margin: 0; }
+.pm-nav-links a { font-family: var(--pm-font-mono); font-size: 1.2rem; letter-spacing: var(--pm-track-wide); text-transform: uppercase; color: var(--pm-text-mute); text-decoration: none; transition: color 0.2s; }
+.pm-nav-links a:hover, .pm-nav-links a[aria-current] { color: var(--pm-text); }
+.pm-theme-toggle { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; padding: 0; border: 1px solid var(--pm-rule-strong); border-radius: 8px; background: transparent; color: var(--pm-text-mute); cursor: pointer; flex-shrink: 0; transition: color 0.2s, border-color 0.2s; }
+.pm-theme-toggle:hover { color: var(--pm-text); border-color: var(--pm-text-soft); }
+.pm-theme-toggle svg { width: 16px; height: 16px; }
+/* The icon shows where a click leads, as on the website: the sun in the dark, the moon on paper. */
+html.navy .pm-theme-toggle .pm-icon-moon, html.light .pm-theme-toggle .pm-icon-sun { display: none; }
+.menu-bar .right-buttons a.pm-nav-cta { font-family: var(--pm-font-mono); font-size: 1.2rem; font-weight: 500; letter-spacing: var(--pm-track-wide); text-transform: uppercase; color: var(--pm-accent-ink); background: var(--pm-accent); border: 1px solid var(--pm-accent); border-radius: 8px; padding: 7px 14px; line-height: 1.4; text-decoration: none; white-space: nowrap; flex-shrink: 0; transition: filter 0.2s; }
+.menu-bar .right-buttons a.pm-nav-cta:hover { filter: brightness(1.1); }
+.pm-nav-cta .pm-cta-short { display: none; }
+/* The links leave the menu bar when it has no room for them; the sidebar then carries them. */
+@container pm-menu (max-width: 1199px) { html:not(.sidebar-visible) .pm-nav-links { display: none; } }
+@container pm-menu (max-width: 1059px) { .pm-nav-links { display: none; } }
+@container pm-menu (max-width: 719px) {
+  .pm-nav-cta .pm-cta-full { display: none; }
+  .pm-nav-cta .pm-cta-short { display: inline; }
+  .menu-bar .right-buttons { gap: 1.2rem; margin-right: 1.2rem; }
+}
+@container pm-menu (max-width: 479px) {
+  .pm-nav-brand .pm-brand-text { display: none; }
+  .menu-title { margin: 0 0.4rem; }
+}
+
+/* ---- Search -------------------------------------------------------------------- */
+#mdbook-searchbar { font-family: var(--pm-font-serif); font-size: 1.7rem; }
+.pm-search-elsewhere { font-family: var(--pm-font-mono); font-size: 1.2rem; letter-spacing: var(--pm-track-wide); text-transform: uppercase; color: var(--pm-text-soft); margin: 0.8rem 0 0; }
+.pm-search-elsewhere a { color: var(--pm-link); }
+
+/* ---- Keyboard ------------------------------------------------------------------ */
+.pm-skip { position: absolute; left: 1.2rem; top: -10rem; z-index: 1000; padding: 0.8rem 1.4rem; font-family: var(--pm-font-mono); font-size: 1.3rem; letter-spacing: var(--pm-track-wide); text-transform: uppercase; color: var(--pm-bg); background: var(--pm-text); border-radius: 4px; text-decoration: none; }
+.pm-skip:focus { top: 1.2rem; }
+:where(a, button, input, label, summary, [tabindex]):focus-visible { outline: 2px solid var(--pm-link); outline-offset: 2px; }
+/* The skip link moves focus to the text itself, which needs no ring. */
+#mdbook-content main[tabindex="-1"]:focus { outline: none; }
+
+/* ---- Previous and next: two labelled links at the foot of the page, never chevrons ---- */
+.nav-wide-wrapper { display: none !important; }
+.nav-wrapper { display: flex !important; justify-content: space-between; gap: 2rem; margin: 4rem 0 1rem; padding-top: 1.6rem; border-top: 1px solid var(--pm-rule); font-size: 1.6rem; }
+.nav-wrapper > div[style] { display: none; }
+.nav-wrapper .mobile-nav-chapters, .nav-wrapper .mobile-nav-chapters:visited { float: none; width: auto; max-width: 48%; font-size: 1em; background: none; border-radius: 0; text-align: left; display: flex; flex-direction: column; gap: 0.35rem; color: var(--pm-text); text-decoration: none; right: auto; }
+.nav-wrapper .mobile-nav-chapters.next { margin-left: auto; text-align: right; align-items: flex-end; }
+.nav-wrapper .mobile-nav-chapters .fa-svg { display: none; }
+.pm-nav-kicker { font-family: var(--pm-font-mono); font-size: 0.75em; letter-spacing: var(--pm-track-extra); text-transform: uppercase; color: var(--pm-text-soft); }
+.mobile-nav-chapters.previous .pm-nav-kicker::before { content: "\2190  "; }
+.mobile-nav-chapters.next .pm-nav-kicker::after { content: "  \2192"; }
+.pm-nav-target { font-family: var(--pm-font-serif); color: var(--pm-text); }
+.nav-wrapper .mobile-nav-chapters:hover .pm-nav-target { color: var(--pm-accent); }
+
+/* ---- The website's visualizations, live, when the book is served from inside the site ---- */
+:root { --pm-space-xs: 4px; --pm-space-sm: 8px; --pm-space-md: 16px; --pm-type-xs: 12px; --pm-dur-fast: 150ms; }
+.content figure.pm-figure.is-live { margin: 2.4em 0 3em; }
+.content .pm-viz { position: relative; margin: 0; }
+.content .pm-viz canvas { width: 100%; display: block; border: 1px solid var(--pm-rule); }
+.content .pm-viz-controls { display: flex; gap: var(--pm-space-sm); align-items: center; margin-top: var(--pm-space-sm); font-family: var(--pm-font-mono); font-size: var(--pm-type-xs); color: var(--pm-text-soft); flex-wrap: wrap; }
+.content .pm-viz-btn { background: var(--pm-surface); border: 1px solid var(--pm-rule-strong); border-radius: 3px; padding: var(--pm-space-xs) var(--pm-space-md); font-family: var(--pm-font-mono); font-size: var(--pm-type-xs); letter-spacing: var(--pm-track-extra); text-transform: uppercase; color: var(--pm-text); cursor: pointer; transition: border-color var(--pm-dur-fast), background-color var(--pm-dur-fast); }
+.content .pm-viz-btn:hover { border-color: var(--pm-cyan); background: var(--pm-cyan-soft); }
+.content .pm-viz-btn.is-active { border-color: var(--pm-cyan); background: var(--pm-cyan-soft); color: var(--pm-cyan-ink); }
+html.navy .content .pm-viz-btn.is-active { color: var(--pm-cyan); }
+
+/* ---- Hero (introduction) and part openers: the CV's monogram treatment ------ */
+.pm-hero, .pm-part {
+  text-align: center;
+  padding: 2.2rem 1rem 1.8rem;
+  border-bottom: 1px solid var(--pm-rule);
+  margin-bottom: 2.2rem;
+}
+.pm-hero .pm-logo, .pm-part .pm-logo { width: 84px; height: 84px; margin: 0.4rem auto 1.9rem; }
+.pm-eyebrow {
+  display: block;
+  font-family: var(--pm-font-mono);
+  font-size: 1.2rem;
+  font-weight: 500;
+  letter-spacing: var(--pm-track-mega);
+  text-transform: uppercase;
+  color: var(--pm-text-soft);
+  margin-bottom: 1.3rem;
+}
+.pm-hero h1, .pm-part h1 { border-bottom: none; margin: 0 0 0.6rem; font-size: 2.8em; letter-spacing: -0.02em; }
+.pm-hero h1 .pm-accent, .pm-part h1 .pm-accent { color: var(--pm-accent); font-style: italic; }
+.pm-hero .pm-sub, .pm-part .pm-sub { max-width: 40em; margin: 0 auto 1.4rem; font-style: italic; color: var(--pm-text-mute); font-size: 1.05em; }
+.pm-hero .pm-ident { font-family: var(--pm-font-mono); font-size: 1.2rem; letter-spacing: var(--pm-track-extra); text-transform: uppercase; color: var(--pm-text-soft); margin-bottom: 1.4rem; }
+/* The notice is a quiet line under the identification, not a callout. */
+.pm-status {
+  display: block; max-width: 40em; margin: 0 auto 1.6rem;
+  font-size: 0.86em; font-style: italic; text-align: center; color: var(--pm-text-mute);
+}
+.pm-status strong { color: var(--pm-text); }
+.pm-cta-row { display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap; }
+.pm-cta {
+  display: inline-block; padding: 0.6em 1.3em; border-radius: 3px;
+  font-family: var(--pm-font-mono); font-size: 1.2rem; letter-spacing: var(--pm-track-extra);
+  text-transform: uppercase; text-decoration: none !important; border: 1px solid var(--pm-rule-strong);
+  color: var(--pm-text) !important; transition: border-color 200ms, background-color 200ms;
+}
+.pm-cta-primary { background: var(--pm-text); color: var(--pm-bg) !important; border-color: var(--pm-text); }
+.pm-cta-primary:hover { background: var(--pm-accent); border-color: var(--pm-accent); color: var(--pm-accent-ink) !important; }
+.pm-cta-secondary:hover { border-color: var(--pm-accent); }
+/* On a phone the opener gives way to the text sooner. */
+@media only screen and (max-width: 600px) {
+  .pm-hero, .pm-part { padding: 1.2rem 0 1.4rem; margin-bottom: 1.6rem; }
+  .pm-hero .pm-logo, .pm-part .pm-logo { width: 52px; height: 52px; margin: 0 auto 1.2rem; }
+  .pm-eyebrow { letter-spacing: var(--pm-track-extra); margin-bottom: 0.9rem; }
+  .pm-hero h1, .pm-part h1 { font-size: 2.2em; }
+  .pm-hero .pm-sub, .pm-part .pm-sub { font-size: 1em; }
+}
+
+/* ---- Print ------------------------------------------------------------------ */
+@media print {
+  .pm-sidebar-brand, .pm-books, .pm-site-links, .pm-skip, .pm-cta-row, .pm-nav-links, .pm-theme-toggle, .pm-nav-cta, .nav-wrapper { display: none; }
+}
+
+
+/* ---- The website's document header, built by pm.js from the page's heading and its kind line ---- */
+.content .pm-doc-header { text-align: center; max-width: 880px; margin: 0.6em auto 2.6em; padding: 0.4em 0 2.2em; border-bottom: 1px solid var(--pm-rule); }
+.content .pm-doc-kicker { font-family: var(--pm-font-mono); font-size: 1.15rem; letter-spacing: var(--pm-track-mega); text-transform: uppercase; color: var(--pm-text-soft); margin: 0 0 1.1em; }
+.content .pm-doc-kicker b { font-weight: 500; color: var(--pm-accent); }
+.content .pm-doc-header h1 { border: 0; margin: 0 0 0.5em; font-size: clamp(2.2em, 3.6vw, 3.1em); font-weight: 400; letter-spacing: -0.015em; line-height: 1.15; color: var(--pm-text); }
+.content .pm-doc-lede { font-style: italic; font-size: 1.05em; color: var(--pm-text-mute); max-width: 42em; margin: 0 auto; line-height: 1.6; }
+.content .pm-doc-meta { font-family: var(--pm-font-mono); font-size: 1.15rem; letter-spacing: var(--pm-track-wide); text-transform: uppercase; color: var(--pm-text-soft); margin-top: 1.6em; }
+.content .pm-doc-meta span { margin: 0 0.7em; }
+.content .pm-doc-meta .pm-sep { color: var(--pm-text-faint); }
+/* The parts' and the introduction's own heroes keep their shape; every other page gets the header. */
+.content h1.pm-doc-raw { display: none; }
+
+/* ---- The website's document body ---- */
+.content h2 { text-align: center; font-weight: 400; font-size: 1.65em; letter-spacing: -0.005em; margin: 3em 0 0.6em; }
+.content h2::after { content: ""; display: block; width: 60px; height: 1px; background: var(--pm-text-faint); margin: 0.8em auto 1.6em; }
+.content h3 { font-style: normal; font-weight: 600; font-size: 1.15em; color: var(--pm-text); margin: 2em 0 0.6em; }
+.content p { line-height: 1.65; }
+.content ul, .content ol { margin: 1em 0 1em 1.8em; }
+.content li { margin-bottom: 0.5em; line-height: 1.6; }
+.content pre { border-radius: 3px; }
+.content table { width: 100%; margin: 1.6em 0; font-size: 0.9em; }
+.content table td, .content table th { border: 0; border-bottom: 1px solid var(--pm-rule); padding: 0.6em 0.9em; text-align: left; vertical-align: top; }
+.content table th { font-size: 0.72em; letter-spacing: var(--pm-track-wide); text-transform: uppercase; color: var(--pm-text-soft); border-bottom: 1px solid var(--pm-text); background: none; }
+.content table tr:nth-child(2n) td { background: none; }
+.content blockquote { border-left: 2px solid var(--pm-text-faint); background: none; font-style: italic; color: var(--pm-text-mute); padding: 0.4em 0 0.4em 1.4em; }
+/* The first two paragraphs of an example or workflow, "You will have" and "You need", read as its lede. */
+.content .pm-lede-block { font-size: 1.02em; }
+
+/* ---- The website's line illustrations: one per example and workflow, in the use-case style ---- */
+.content figure.pm-art { margin: 0 0 2.4em; padding: 1.6em; border: 1px solid var(--pm-rule); border-radius: 3px; background: var(--pm-surface); }
+.content figure.pm-art figcaption { font-family: var(--pm-font-mono); font-size: 0.7em; letter-spacing: var(--pm-track-extra); text-transform: uppercase; color: var(--pm-text-soft); text-align: center; margin-top: 1.2em; }
+.uc-diagram { display: block; width: 100%; max-width: 560px; height: auto; margin: 0 auto; }
+.uc-diagram .uc-edge { stroke: var(--pm-text-faint); stroke-width: 1; }
+.uc-diagram .uc-edge-dash { stroke: var(--pm-text-faint); stroke-width: 1; stroke-dasharray: 3 5; }
+.uc-diagram .uc-node { fill: var(--pm-bg); stroke: var(--pm-text-mute); stroke-width: 1; }
+.uc-diagram .uc-node-strong { fill: var(--pm-text); stroke: none; }
+.uc-diagram .uc-ring { fill: none; stroke: var(--pm-text-mute); stroke-width: 1.2; }
+.uc-diagram .uc-ring-dash { fill: none; stroke: var(--pm-text-faint); stroke-width: 1; stroke-dasharray: 2 5; }
+.uc-diagram .uc-core, .uc-diagram .uc-pulse { fill: var(--pm-accent); }
+.uc-diagram .uc-dead { stroke: var(--pm-accent); stroke-dasharray: 2 3; }
+.uc-diagram .uc-dead-mark { stroke: var(--pm-accent); stroke-width: 1.4; }
+.uc-diagram .uc-label { font-family: var(--pm-font-mono); font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; fill: var(--pm-text-soft); text-anchor: middle; }
+.uc-diagram .uc-label-left { text-anchor: start; }
+.uc-diagram .uc-frame { fill: var(--pm-surface-2); stroke: var(--pm-text-faint); stroke-width: 1; }
+.uc-diagram .uc-frame-seg { stroke: var(--pm-text-faint); stroke-width: 1; }
+.uc-diagram .uc-frame-accent { fill: var(--pm-amber-soft); stroke: var(--pm-accent); stroke-width: 1; }
+@media (prefers-reduced-motion: reduce) { .uc-diagram animateMotion { display: none; } }
+
+/* ---- The sidebar is a drawer, as the website has no sidebar: closed until asked for ---- */
+html.sidebar-visible .sidebar { box-shadow: 1px 0 0 var(--pm-rule); }
+.content main { padding-top: 1rem; }

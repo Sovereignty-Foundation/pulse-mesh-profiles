@@ -1,0 +1,29 @@
+[package]
+name = "pulse-wire-xdp"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license-file.workspace = true
+rust-version.workspace = true
+publish.workspace = true
+
+keywords = ["pulse-mesh", "af-xdp", "kernel-bypass", "linux", "network"]
+categories = ["network-programming"]
+description = "The Pulse Mesh UDP transport's frames over AF_XDP on Linux: a sender that writes them into a NIC queue's TX ring, and a receiver whose XDP program hands it the queue's packets for its port."
+
+[dependencies]
+core-transport = { path = "../../../pulse-mesh/core/core-transport" }
+pulse-canon = { path = "../../../pulse-mesh/pulse/pulse-canon" }
+pulse-wire-udp = { path = "../../../pulse-mesh/core/pulse-wire-udp" }
+thiserror.workspace = true
+
+# The system calls; the crate builds everywhere, and off Linux every
+# constructor returns PlatformUnsupported.
+[target.'cfg(target_os = "linux")'.dependencies]
+libc.workspace = true
+
+[dev-dependencies]
+tempfile.workspace = true
+
+[lints]
+workspace = true

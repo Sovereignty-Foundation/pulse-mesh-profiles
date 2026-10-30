@@ -1,0 +1,15 @@
+[package]
+name = "enterprise-functions"
+description = "Pulse Mesh — enterprise_ring functions layer: stateless primitives. Empty by design; kept so the four-crate shape is uniform."
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license-file.workspace = true
+rust-version.workspace = true
+publish.workspace = true
+
+[dependencies]
+enterprise-core = { path = "../enterprise-core" }
+
+[lints]
+workspace = true

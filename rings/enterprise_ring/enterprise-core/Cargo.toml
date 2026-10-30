@@ -1,0 +1,14 @@
+[package]
+name = "enterprise-core"
+description = "Pulse Mesh — enterprise_ring core layer: shared types for the ring's functions and stages. Empty by design; kept so the four-crate shape is uniform."
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license-file.workspace = true
+rust-version.workspace = true
+publish.workspace = true
+
+[dependencies]
+
+[lints]
+workspace = true

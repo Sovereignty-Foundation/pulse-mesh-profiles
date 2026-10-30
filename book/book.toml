@@ -1,0 +1,32 @@
+[book]
+title = "Pulse Mesh Profiles"
+description = "The Pulse Mesh book: tutorials, how-to guides, the specification and reference, and the explanations behind the substrate."
+authors = ["Sovereignty Foundation Inc."]
+language = "en"
+src = "src"
+
+[build]
+# mdBook's index preprocessor renders a README.md as index.html but leaves every
+# link to it pointing at README.html, so each section's landing page was a 404.
+# Without it a README.md renders as README.html and the links resolve; links
+# stays on for {{#include}}.
+use-default-preprocessors = false
+
+[preprocessor.links]
+
+[output.html]
+# The rendered book is served from the website under /docs/; only the 404 page uses this.
+site-url = "/docs/profiles/"
+# Dark is the baseline, as on the website. theme/head.hbs applies the website's
+# stored choice ("pm-theme") before the first paint, so the site and the books
+# switch together.
+default-theme = "navy"
+preferred-dark-theme = "navy"
+additional-css = ["theme/custom.css"]
+additional-js = ["theme/pm.js"]
+no-section-label = true
+
+[output.html.fold]
+# Every fold starts closed; mdBook opens the ones around the page being read.
+enable = true
+level = 0

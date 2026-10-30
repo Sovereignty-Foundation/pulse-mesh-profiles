@@ -1,0 +1,26 @@
+[package]
+name = "hft-functions"
+description = "Pulse Mesh — hft_ring functions layer: the WaitStrategy trait with BusySpin, Park and the opt-in UMWAIT, MWAITX and WFE backends."
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license-file.workspace = true
+rust-version.workspace = true
+publish.workspace = true
+
+[dependencies]
+raw-cpuid.workspace = true
+
+[features]
+# Hardware wait-strategy backends, opt-in. `BusySpin` and `Park` are
+# always built and need no feature.
+umwait = []        # Intel WAIT_PKG (Tremont, Ice Lake-X+, Sapphire Rapids)
+mwaitx = []        # AMD Zen 2+ MONITORX/MWAITX
+wfe = []           # ARM AArch64 Wait For Event
+
+[dev-dependencies]
+serde_json.workspace = true
+quanta.workspace = true
+
+[lints]
+workspace = true

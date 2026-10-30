@@ -1,0 +1,66 @@
+# Pulse Mesh satellite-repository registry — draft-00
+#
+# This file is the source of truth for officially-recognized satellite
+# repositories: bindings, adapters and tooling that live outside this
+# workspace. Each entry pairs a satellite repository with its maturity
+# tier (how production-ready the implementation is) and its registry
+# status (Sovereignty Foundation Inc.'s governance posture toward it).
+#
+# No tool in this workspace parses this file. The optimization modules
+# M01..M12 that `pms modules ls` and the MCP `modules_list` tool report
+# are the static table in
+# `rings/dev_ring/dev-functions/src/core_ops/modules.rs`.
+#
+# Field semantics — see the `pulse-canon` rustdoc and the README's "Workspace
+# layout" section for the model.
+#
+# tier               — Maturity of the implementation:
+#                        "experimental" — builds end-to-end OR documents
+#                          a bounded partial-build status; no API
+#                          guarantees; surface-area-limited
+#                        "alpha"        — compiles, tests pass, byte-
+#                          equality with the reference proven (where
+#                          applicable), production-readiness NOT
+#                          declared by maintainers
+#                        "beta"         — production-deployable with
+#                          caveats, API stability declared, public-
+#                          facing CHANGELOG
+#                        "stable"       — ratified, production-ready,
+#                          SemVer commitment
+#
+# registry_status    — Sovereignty Foundation Inc.'s governance posture:
+#                        "recognized"  — known, listed for inspection;
+#                          conformance not yet established
+#                        "conformant"  — passes the applicable subset of
+#                          the core test-vectors/
+#                        "ratified"    — maintainers endorse production
+#                          path (usually pairs with tier = "stable")
+#                        "deprecated"  — listed for migration only
+#
+# conformance_surface — Which test-vector subsets the satellite covers,
+#                       e.g.:
+#                         ["pulse-layout", "envelope-raw",
+#                          "envelope-nested"]    — codec / binding
+#                         ["udp-frame-wrapping"] — transport
+#                         []                     — adapter or bench
+#                                                  satellite with no
+#                                                  codec conformance
+#                                                  burden
+#
+# targets_spec       — The core spec draft version this satellite
+#                      targets, e.g. "draft-00".
+#
+# version            — The satellite's own semver. May lag or lead the
+#                      core; per-satellite versioning is independent.
+#
+# repo               — URL to the satellite's repository.
+#
+# description        — One-line description for human readers.
+
+# ────────────────────────────────────────────────────────────────────
+# Registered satellites
+# ────────────────────────────────────────────────────────────────────
+#
+# None in this release. The C, Node, Python and WebAssembly bindings,
+# the thin clients and the tools live in this repository under
+# `peripheral/` and are built and tested with it.

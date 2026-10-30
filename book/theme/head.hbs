@@ -1,0 +1,11 @@
+<!-- The book shares the website's type: Vollkorn for prose, JetBrains Mono for code and labels. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vollkorn:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<meta name="pm-version" content="1.0.0-beta">
+<meta name="pm-root" content="{{ path_to_root }}">
+<meta name="pm-book" content="{{ book_title }}">
+<meta name="theme-color" content="#131210">
+<!-- The theme is the website's: "pm-theme" holds "light" or "dark", and dark when it is unset. mdBook reads its own key after this runs. -->
+<script>try { localStorage.setItem("mdbook-theme", localStorage.getItem("pm-theme") === "light" ? "light" : "navy"); if (localStorage.getItem("mdbook-sidebar") === null) { localStorage.setItem("mdbook-sidebar", "hidden"); } } catch (e) { }</script>
+<!-- The sidebar is a drawer, as on the website, which has none: it starts closed and opens from the menu bar. -->

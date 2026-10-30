@@ -1,0 +1,20 @@
+# SPDX-License-Identifier: LicenseRef-Proprietary
+[package]
+name = "example-robotics-01-large-payload-rust"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license-file.workspace = true
+rust-version.workspace = true
+publish = false
+description = "Example — the robotics ring's large-payload pool reached through its hub: a 4 MiB scan written in one process and read in another, its 16-byte reference carried in a Pulse's data area, and the segment freed for the next scan."
+
+[[bin]]
+name = "large-payload"
+path = "src/main.rs"
+
+[dependencies]
+robotics-hub = { path = "../../rings/robotics_ring/robotics-hub" }
+
+[lints]
+workspace = true

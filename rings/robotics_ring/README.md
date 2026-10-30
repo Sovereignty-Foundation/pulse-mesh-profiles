@@ -1,0 +1,3 @@
+# `robotics_ring/`
+
+The large-payload ring: `robotics-stages` holds an out-of-band segment pool for multi-megabyte payloads, in shared memory that processes map by name, adaptive ring sizing, which replaces a ring under its name with one of the new size while readers follow, and a UDP transport over io_uring (Linux only) beside a pool of persistent TCP flows; `robotics-hub` composes them, and `robotics-core` and `robotics-functions` are empty placeholders that keep the four-crate shape. Depend on `robotics-hub`. The book's page is [robotics ring](https://pulse-mesh.net/docs/profiles/architecture/rings/robotics_ring.html); the crates are in the generated [crate index](https://pulse-mesh.net/docs/profiles/reference/crates.html).

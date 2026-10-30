@@ -1,0 +1,138 @@
+name: CI
+
+# Both jobs run scripts/gate.sh, the one gate, rather than restate its
+# checks: the script's header lists them and what each needs. A pull
+# request gets the gate a change passes before it merges; a push to main,
+# or a run started by hand, gets the full gate but for its four Docker
+# legs, which --skip leaves out. Three of them bring Linux to a Mac in
+# containers, and this runner is Linux already, its test and
+# clippy-all-features checks running there; the fourth, linux-net, runs
+# the AF_XDP transport's tests in a privileged container with veth pairs,
+# which this job does not set up. Those tests skip without the privilege
+# and the gate's test check runs the rest of the crate.
+#
+# The profiles build against the standard as a sibling checkout,
+# ../pulse-mesh, so each job checks this repository out as
+# pulse-mesh-profiles/ and pulse-mesh beside it. A token that can read
+# pulse-mesh is needed while that repository is private: the repository
+# secret PULSE_MESH_READ_TOKEN, a read-only token for
+# Sovereignty-Foundation/pulse-mesh. Without the secret the job's own
+# token is used, which reads it only once it is public.
+#
+# The repository runs only GitHub's own actions, each pinned to a full
+# commit (its release tag in a comment beside it): the toolchain comes from
+# rustup, which the runner has, and the cache from actions/cache.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  CARGO_TERM_COLOR: always
+
+defaults:
+  run:
+    working-directory: pulse-mesh-profiles
+
+jobs:
+  gate:
+    name: gate (ubuntu-latest)
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+
+    steps:
+      # A clone, not an export: the license check reads git ls-files.
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          path: pulse-mesh-profiles
+
+      - name: Checkout the standard beside it
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: Sovereignty-Foundation/pulse-mesh
+          path: pulse-mesh
+          token: ${{ secrets.PULSE_MESH_READ_TOKEN || github.token }}
+
+      - name: Install the toolchain rust-toolchain.toml pins
+        run: |
+          CHANNEL=$(sed -n 's/^channel *= *"\(.*\)"/\1/p' rust-toolchain.toml)
+          rustup toolchain install "$CHANNEL" --profile minimal -c rustfmt -c clippy
+          rustup show active-toolchain
+
+      - name: Cache Rust artifacts and the gate's tools
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: |
+            ~/.cargo/bin
+            ~/.cargo/.crates.toml
+            ~/.cargo/.crates2.json
+            ~/.cargo/registry/index
+            ~/.cargo/registry/cache
+            ~/.cargo/git/db
+            pulse-mesh-profiles/target
+          key: gate-${{ runner.os }}-${{ hashFiles('pulse-mesh-profiles/rust-toolchain.toml', 'pulse-mesh-profiles/**/Cargo.lock') }}
+          restore-keys: gate-${{ runner.os }}-
+
+      - name: Install the tools the gate names (deny, docs)
+        run: |
+          cargo install cargo-deny --locked
+          cargo install mdbook --version 0.5.4 --locked
+
+      - name: The gate
+        run: scripts/gate.sh
+
+  gate-full:
+    name: gate --full (ubuntu-latest)
+    runs-on: ubuntu-latest
+    if: github.event_name != 'pull_request'
+
+    steps:
+      # A clone, not an export: the license check reads git ls-files.
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          path: pulse-mesh-profiles
+
+      - name: Checkout the standard beside it
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: Sovereignty-Foundation/pulse-mesh
+          path: pulse-mesh
+          token: ${{ secrets.PULSE_MESH_READ_TOKEN || github.token }}
+
+      # x86-clippy lints for x86_64 Linux, which is this runner's own target
+      # unless it is an arm64 one.
+      - name: Install the toolchain rust-toolchain.toml pins, with the target the gate builds for
+        run: |
+          CHANNEL=$(sed -n 's/^channel *= *"\(.*\)"/\1/p' rust-toolchain.toml)
+          rustup toolchain install "$CHANNEL" --profile minimal -c rustfmt -c clippy -t x86_64-unknown-linux-gnu
+          rustup show active-toolchain
+
+      - name: Cache Rust artifacts and the gate's tools
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: |
+            ~/.cargo/bin
+            ~/.cargo/.crates.toml
+            ~/.cargo/.crates2.json
+            ~/.cargo/registry/index
+            ~/.cargo/registry/cache
+            ~/.cargo/git/db
+            pulse-mesh-profiles/target
+          key: gate-full-${{ runner.os }}-${{ hashFiles('pulse-mesh-profiles/rust-toolchain.toml', 'pulse-mesh-profiles/**/Cargo.lock') }}
+          restore-keys: gate-full-${{ runner.os }}-
+
+      - name: Install the tools the gate names
+        run: |
+          cargo install cargo-deny --locked
+          cargo install mdbook --version 0.5.4 --locked
+
+      - name: The full gate, but for its Docker legs
+        run: scripts/gate.sh --full --skip linux-test-1g,linux-test-64m,linux-net,linux-clippy

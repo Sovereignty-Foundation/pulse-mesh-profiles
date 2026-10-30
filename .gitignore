@@ -1,0 +1,52 @@
+# Cargo build artifacts, at the root and in every crate that builds on its
+# own (the bindings and the fuzz harness)
+**/target/
+
+# Node bindings (installed deps + napi build outputs)
+#
+# `*.node` is the napi-rs compiled native module loaded by Node.js at
+# runtime via `dlopen`. These are build outputs (per-platform,
+# per-arch binaries) and MUST NOT be committed. Downstream consumers
+# build their own; we publish source only. The rule is recursive so
+# it matches any path under any binding crate.
+**/node_modules/
+*.node
+
+# Python bindings (bytecode caches, and the metadata an editable install
+# of the thin client writes next to its source)
+**/__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+
+# Editor / IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# macOS
+.DS_Store
+
+# Environment / local config
+.env
+.env.local
+
+# Test artifacts
+*.profraw
+*.profdata
+
+# mdBook build output (source lives in book/src/, this is generated)
+/book/book/
+
+# cargo-fuzz outputs (crash artifacts become regression tests, not commits)
+/peripheral/fuzz/artifacts/
+/peripheral/fuzz/corpus/
+
+# Local agent tooling and editor state for AI assistants
+.claude/
+
+# Session/engagement handoff docs — internal by nature
+*-HANDOFF.md
+HANDOFF*.md
